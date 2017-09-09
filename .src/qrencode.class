@@ -1,0 +1,25 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+Me.Center
+If FMain.bqrencode Then
+  ButtonInstall.enabled = False
+  TextBoxError.Visible = True
+Endif
+
+End
+
+Public Sub ButtonInstall_Click()
+
+Shell "gksu " & Shell$("apt-get -y install qrencode zbar-tools") Wait
+
+Me.Close
+
+End
+
+Public Sub ButtonCancel_Click()
+
+Quit
+
+End

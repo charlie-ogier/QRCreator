@@ -1,0 +1,28 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.10.0
+Title=QRCreator
+Startup=FMain
+Icon=1427210076_qr-code-iphone.png
+Version=2.0.0
+Component=gb.image
+Component=gb.qt4
+Component=gb.form
+Component=gb.media
+Component=gb.media.form
+Description="Create your own QR codes to save and print or scan with your smart phone."
+Authors="Charlie Ogier (c) 2017"
+TabSize=2
+Language=en_GB
+CreateShortcut=1
+Maintainer=Charlie Ogier
+Vendor=cogier
+Address=charlie@cogier.com
+License=General Public Licence
+Packager=1
+Systems=ubuntu
+Menus=ubuntu:"Applications/Graphics"
+Categories=ubuntu:"Graphics"
+Groups=ubuntu:"graphics"
+Tags=Image,2DGraphics
+GambasVersion=3.8
+CreateMenu=1

@@ -1,0 +1,28 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+If Not Exist(User.Home &/ "Pictures/QRCodes") Then
+  Mkdir User.Home &/ "Pictures/QRCodes"
+Endif
+
+FileChooser1.SelectedPath = User.Home &/ "Pictures/QRCodes/"
+FileChooser1.Filter = ["*.txt", " Text Files"]
+
+End
+
+Public Sub QRCSaveSaveOpen_Click()
+Dim sTemp As String = FileChooser1.SelectedPath
+
+If sTemp <> "" Then FMain.sQRCOUTPUT = File.Load(sTemp)
+
+ButtonCancel_Click
+
+End
+
+Public Sub ButtonCancel_Click()
+
+OpenFile.Close
+
+End
+

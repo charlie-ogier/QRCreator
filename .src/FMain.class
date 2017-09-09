@@ -1,0 +1,172 @@
+' Gambas class file
+
+'See QRHelp form for program history
+'Charlie Ogier (C) 2011-2017
+'Fresh look in 2017
+
+Public sQRCOUTPUT As String
+Public sQRCPixelSize As String
+Public sQRCMargin As String
+Public bQrencode As Boolean
+sQRTemp As String = "qrencode -o ~/.TempQRCodeFile.png 'QRCreator (c)Charlie Ogier'"
+
+Public Sub Form_Open()
+Dim bStopCentre As Boolean
+
+Fmain.Title = "QRCreator V2.0.0"
+If Not bStopCentre Then Me.Center
+bStopCentre = True
+TestForqrencode
+Notify
+AllButtons_Click("ToolButtonClear")
+TextBoxInput.SetFocus
+Panel5.enabled = False
+ToolButtonSave.Enabled = False
+ToolButtonSave2.enabled = False
+
+End
+
+Public Sub Notify()
+Dim sNotify As String
+
+sNotify = "notify-send -i ~/.TempQRCodeFile.png QRCreator 'Charlie Ogier software (c) 2017'"
+Shell sNotify
+  
+End
+
+Public Sub TestForqrencode()
+
+Try Kill "~/.TempQRCodeFile.png"
+Shell sQRTemp Wait
+
+Try QRCPictureBox1.Picture = Picture.Load("~/.TempQRCodeFile.png")
+ 
+If Error Then
+  Me.hide
+  Qrencode.ShowModal
+  bQrencode = True ' If the qrencode install fails then don't go round in circles, own up!
+  Me.Show
+  TestForqrencode
+End If
+
+End
+
+Public Sub TextBoxInput_Change() 'What to do when text is entered in the "Barcode" TextBox
+
+If Not TextBoxInput.text Then Shell sQRTemp Wait
+PictureUpdate
+
+End
+
+Public Sub SpinBoxes_Change() 'What to do when the Pixel Size or Margin Size is changed
+
+PictureUpdate
+
+End
+
+Public Sub PictureUpdate() 'Update picture
+Dim sQRCTempFile, sQRCTemp As String
+
+sQRCOUTPUT = TextBoxInput.Text
+sQRCPixelSize = "-s " & Str$(SpinBoxPixelSize.Value) & " "
+sQRCMargin = "-m " & Str$(SpinBoxMargin.Value) & " "
+sQRCTemp = "~/.TempQRCodeFile" & ".png "
+If sQRCOUTPUT <> "" Then 
+  sQRCTempFile = "qrencode -o " & sQRCTemp & sQRCPixelSize & sQRCMargin & Shell$(sQRCOUTPUT) '& Chr(39)
+  Shell sQRCTempFile Wait
+End If
+QRCPictureBox1.Picture = Picture.Load("~/.TempQRCodeFile.png")
+Form_Resize
+
+End
+
+Public Sub ButtonHelp_Click()
+
+QRHelp.ShowModal
+TextBoxInput.SetFocus
+
+End
+
+Public Sub Form_Resize()
+Dim siHeight, siCount As Short
+
+siHeight = QRCPictureBox1.Picture.H
+
+siCount = Len(TextBoxInput.text)
+If siCount > 2000 Then 
+  TextBoxInput.text = Left(TextBoxInput.text, 2000) 
+  Message.Info("That's as big as this goes!\nThat's over 2000 charaters, what are you trying to do - write a book?", " OK ")
+End If
+
+If TextBoxInput.text = "" Then
+  ToolButtonSave.Enabled = False
+  ToolButtonSave2.Enabled = False
+  Panel5.enabled = False
+Else
+  ToolButtonSave.Enabled = True
+  ToolButtonSave2.Enabled = True
+  Panel5.enabled = True
+Endif
+
+TextBoxInput.SetFocus
+
+End
+
+Public Sub Process_Read() 
+Dim sOutput As String
+
+sOutput = Read #Last, -256    'Read the stream
+
+If sOutput Not Null Then
+  Shell "pkill zbarcam"       'Kill zbarcam
+Endif
+
+
+
+sOutput = Replace(sOutput, "QR-Code:", "")
+TextBoxInput.text = sOutput
+
+End
+
+Public Sub AllButtons_Click(Optional sButton As String)
+Dim iAnswer As Integer
+
+If Not sButton Then sButton = Last.name
+
+Select Case sButton
+  Case "ToolButtonQuit", "ToolButtonQuit2"
+    If TextBoxInput.text <> "" Then
+      Message.Title = "Bye bye?"
+      iAnswer = Message.Question("Are you sure you want to quit?", "Cancel", "OK")
+      If iAnswer = 1 Then Return
+    Endif
+    Try Kill "~/.TempQRCodeFile.png"
+    Me.Close
+  Case "ToolButtonOpen", "ToolButtonOpen2"
+    OpenFile.ShowModal
+    TextBoxInput.text = sQRCOUTPUT
+  Case "ToolButtonSave", "ToolButtonSave2"
+    sQRCPixelSize = "-s " & Str$(SpinBoxPixelSize.Value) & " "
+    sQRCMargin = "-m " & Str$(SpinBoxMargin.Value) & " "
+    sQRCOUTPUT = TextBoxInput.Text
+    SaveForm.Show
+  Case "ToolButtonClear", "ToolButtonClear2"
+    AllButtons_Click("ToolButtonDefaults")
+    TextBoxInput.text = ""
+    TextBoxInput.SetFocus
+    PictureUpdate
+  Case "ToolButtonDefaults", "ToolButtonDefaults2"
+    SpinBoxPixelSize.Value = "3"
+    SpinBoxMargin.Value = "4"
+    PictureUpdate
+  Case "ToolButtonScan", "ToolButtonScan2"
+    Shell "zbarcam" For Read As "Process"
+  Case "ToolButtonHelp", "ToolButtonHelp2"
+    QRHelp.Show
+    TextBoxInput.SetFocus
+End Select
+
+End
+
+
+

@@ -1,0 +1,50 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,122,61)
+  Text = ("QR Code Maker - Save file")
+  Icon = Picture["1427210076_qr-code-iphone.png"]
+  Arrangement = Arrange.Vertical
+  { Panel1 HBox
+    MoveScaled(1,2,119,51)
+    Expand = True
+    { DirSaveChooser1 DirChooser
+      MoveScaled(0,0,118,50)
+      Expand = True
+    }
+  }
+  { Panel2 HBox
+    MoveScaled(-3,53,117,5.1429)
+    Padding = 2
+    { QRCSaveTextBox1 TextBox
+      MoveScaled(0,0,14,4)
+      Background = &HFFFFFF&
+      ToolTip = ("Input the file name of you choice, spaces are allowed. File will be saved in your Home folder")
+      Expand = True
+      Text = ("TestFile")
+      Alignment = Align.Right
+      MaxLength = 25
+    }
+    { QRCLabel3 Label
+      MoveScaled(27,0,5,4)
+      Text = (".png")
+    }
+    { Panel4 Panel
+      MoveScaled(35,1,3,3)
+    }
+    { QRCSaveSaveButton1 Button
+      MoveScaled(44,0,11,4)
+      ToolTip = ("This will save your QR file")
+      Text = Shortcut(("Save"), "S")
+    }
+    { Panel3 Panel
+      MoveScaled(64,2,21,2)
+      Expand = True
+    }
+    { QRCSaveQuitButton3 Button
+      MoveScaled(102,0,11,4)
+      ToolTip = ("Escape from here!")
+      Text = Shortcut(("Cancel"), "C")
+    }
+  }
+}

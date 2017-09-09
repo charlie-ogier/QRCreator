@@ -1,0 +1,31 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,129,74)
+  Icon = Picture["1427210076_qr-code-iphone.png"]
+  Arrangement = Arrange.Vertical
+  { Panel1 HBox
+    MoveScaled(0,0,78,47)
+    Expand = True
+    Padding = 2
+    { TextArea1 TextArea
+      MoveScaled(2,4,64,29)
+      Expand = True
+      Text = ("This program offers a simple graphical way to access the power of the qrencode (CLI) program.\n\nSimply enter text in the text box and the code is created. This version will allow up to 2000 characters including spaces. Save your creation and add to your documents or simply scan from your monitor or smart phone.\n\nQrencode is required to run this program, you will be advised if Qrencode is not already installed.\n_________________\n\nProgram history\n\n08/05/11 Created by Charlie Ogier V1.1.0 \n19/03/15 Now created in Gambas3 V1.1.1 \nImprove form size handling and help text V1.1.2\nFixed bug in save that ignored the folder and saved everything to the Home folder V1.1.3\n02/06/15 Tidied up to present on the Gambas Farm V1.1.4\n04/06/15 Added a routine to install qrencode on Debian Distros V1.1.5\n06/05/15 Improved quencode installation allowing for other distos v1.1.6\n06/05/15 gksu is not installed in Fedora Ahhh! v1.1.7\n18/08/15 Fixed bug that caused an error with some characters e.g. the apostrophe. Small update To the test for qrencode.The program will only try once to install qrencode. Redesigned interface with a more modern look and feel V1.2.0\n08/09/17 Major rewrite of various components and a general update V2.0.0\n_________________\n\nQRCreator\nTo create QR Barcodes\nqrencode written by Kentaro Fukuchi\nIcon by Design contest from www.iconfinder.com\nSend bugs to bugs@cogier.com\n \nCharlie Ogier 2017 Copyright (C) \n\nThis program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA,  02110-1301, USA\n")
+      ReadOnly = True
+      Wrap = True
+    }
+  }
+  { Panel2 HBox
+    MoveScaled(5,50,18,5)
+    Padding = 2
+    { Panel3 Panel
+      MoveScaled(1,1,4,2)
+      Expand = True
+    }
+    { QRCqrenHelpButton1 Button
+      MoveScaled(6,1,10,3)
+      Text = Shortcut(("OK"), "O")
+    }
+  }
+}

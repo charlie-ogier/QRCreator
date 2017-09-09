@@ -1,0 +1,65 @@
+' Gambas class file
+
+sQRCSaveDIRName As String
+sQRCSaveFileName As String
+sQRCSaveShellCode As String
+sQRCSaveMessage1 As String
+sQRCSaveFileExist As String
+
+Public Sub Form_Open()
+
+If Not Exist(User.Home &/ "Pictures/QRCodes") Then
+  Mkdir User.Home &/ "Pictures/QRCodes"
+Endif
+
+DirSaveChooser1.SelectedPath = User.Home &/ "Pictures/QRCodes"
+sQRCSaveDIRName = User.Home &/ "Pictures/QRCodes"
+
+End
+
+Public Sub QRCSaveSaveButton1_Click()
+Dim bTestForFile As Boolean
+' Dim hFile As File
+Dim sQRCSaveTextFileName As String
+
+sQRCSaveFileName = QRCSaveTextBox1.Text
+
+sQRCSaveTextFileName = sQRCSaveFileName & ".txt"
+sQRCSaveFileName &= ".png "
+
+If Len(FMain.sQRCOUTPUT) = 0 Then FMain.sQRCOUTPUT = " "
+sQRCSaveFileExist = Mid$(sQRCSaveFileName, 1, -1)
+
+If Exist(sQRCSaveDIRName &/ sQRCSaveFileName) Then
+  bTestForFile = True
+    Select Message.Warning("This file already exists", " &Overwrite ", " &Cancel ")
+  Case 1
+    bTestForFile = False
+  End Select
+Endif
+
+If Not bTestForFile Then
+  ' hfile = Open sQRCSaveDIRName &/ sQRCSaveTextFileName For Create
+  ' Print #hFile, FMain.sQRCOUTPUT
+  File.Save(sQRCSaveDIRName &/ sQRCSaveTextFileName, FMain.sQRCOUTPUT)
+  sQRCSaveShellCode = "qrencode -o " & sQRCSaveDIRName &/ Shell$(sQRCSaveFileName) & " " & FMain.sQRCPixelSize & FMain.sQRCMargin & Chr(39) & FMain.sQRCOUTPUT & Chr(39)
+  Shell sQRCSaveShellcode Wait
+  Debug sQRCSaveShellcode 
+  sQRCSaveMessage1 = "Your file " & sQRCSaveFileName & " has been saved "
+  Print Message.Info(sQRCSaveMessage1, " &OK ")
+  SaveForm.Close()
+Endif
+
+End
+
+Public Sub QRCSaveQuitButton3_Click()
+
+SaveForm.Close()
+
+End
+
+Public Sub DirSaveChooser1_Change()
+
+sQRCSaveDIRName = DirSaveChooser1.SelectedPath
+
+End

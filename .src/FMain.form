@@ -1,0 +1,190 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,64)
+  Text = ("QRCreator")
+  Icon = Picture["1427210076_qr-code-iphone.png"]
+  Arrangement = Arrange.Vertical
+  Padding = 5
+  { ToolButtonScan2 Menu AllButtons
+    Name = "ToolButtonScan2"
+    Text = Shortcut(("File"), "F")
+    { ToolButtonSave2 Menu AllButtons
+      Name = "ToolButtonSave2"
+      Text = Shortcut(("Save"), "S") & "..."
+      Shortcut = "Ctrl+S"
+    }
+    { ToolButtonQuit2 Menu AllButtons
+      Name = "ToolButtonQuit2"
+      Text = Shortcut(("Quit"), "Q")
+      Shortcut = "Alt+F4"
+    }
+  }
+  { MenuEdit Menu
+    Text = Shortcut(("Edit"), "E")
+    { ToolButtonClear2 Menu AllButtons
+      Name = "ToolButtonClear2"
+      Text = Shortcut(("Clear"), "C")
+      Shortcut = "Ctrl+Shift+C"
+    }
+    { ToolButtonDefaults2 Menu AllButtons
+      Name = "ToolButtonDefaults2"
+      Text = Shortcut(("Reset"), "R")
+      Shortcut = "Ctrl+Shift+R"
+    }
+  }
+  { MenuHelp Menu
+    Text = Shortcut(("Help/About"), "H")
+    { ToolButtonHelp2 Menu AllButtons
+      Name = "ToolButtonHelp2"
+      Text = Shortcut(("Help and About"), "H")
+      Shortcut = "F1"
+    }
+  }
+  { Separator1 Separator
+    MoveScaled(4,0,15,0)
+    Background = Color.Black
+  }
+  { HBox2 HBox
+    MoveScaled(0,2,61,4.5714)
+    Padding = 2
+    { ToolButtonQuit ToolButton AllButtons
+      Name = "ToolButtonQuit"
+      MoveScaled(-1,0,4,4)
+      ToolTip = ("Quit - Bye bye  Alt+F4")
+      Picture = Picture["icon:/22/quit"]
+    }
+    { Panel7 Panel Spacers
+      Name = "Panel7"
+      MoveScaled(4,1,2,3)
+    }
+    { ToolButtonOpen ToolButton AllButtons
+      Name = "ToolButtonOpen"
+      MoveScaled(6,0,4,4)
+      ToolTip = ("Opens a saved text file")
+      Picture = Picture["icon:/22/open"]
+    }
+    { Panel10 Panel Spacers
+      Name = "Panel10"
+      MoveScaled(10,0,2,3)
+    }
+    { ToolButtonSave ToolButton AllButtons
+      Name = "ToolButtonSave"
+      MoveScaled(12,0,4,4)
+      ToolTip = ("Save the QRCode to disk   Ctrl+S")
+      Picture = Picture["icon:/22/save"]
+    }
+    { Panel11 Panel Spacers
+      Name = "Panel11"
+      MoveScaled(16,0,2,3)
+    }
+    { ToolButtonClear ToolButton AllButtons
+      Name = "ToolButtonClear"
+      MoveScaled(18,0,4,4)
+      ToolTip = ("Clear the text   Ctrl+Shift+C")
+      Picture = Picture["icon:/22/clear"]
+    }
+    { Panel12 Panel Spacers
+      Name = "Panel12"
+      MoveScaled(22,0,2,3)
+    }
+    { ToolButtonDefaults ToolButton AllButtons
+      Name = "ToolButtonDefaults"
+      MoveScaled(25,0,4,4)
+      ToolTip = ("Reset settings to their default   Ctrl+Shift+R")
+      Picture = Picture["icon:/22/revert"]
+    }
+    { Panel13 Panel Spacers
+      Name = "Panel13"
+      MoveScaled(28,0,2,3)
+    }
+    { ToolButtonScan ToolButton AllButtons
+      Name = "ToolButtonScan"
+      MoveScaled(30,0,4,4)
+      ToolTip = ("Scan a QRCode")
+      Picture = Picture["Scan.png"]
+    }
+    { Panel1 Panel
+      MoveScaled(35,0,2,4)
+      Expand = True
+    }
+    { ToolButtonHelp ToolButton AllButtons
+      Name = "ToolButtonHelp"
+      MoveScaled(36,0,4,4)
+      ToolTip = ("Help/About")
+      Picture = Picture["icon:/22/help"]
+    }
+  }
+  { Separator3 Separator
+    MoveScaled(0,7,15,0)
+    Background = Color.Black
+  }
+  { Panel5 HBox
+    MoveScaled(0,8,62,4.5714)
+    Padding = 2
+    { QRCLabel5 Label
+      MoveScaled(0,0,7,4)
+      Text = ("Margin")
+    }
+    { SpinBoxMargin SpinBox SpinBoxes
+      Name = "SpinBoxMargin"
+      MoveScaled(7,0,6,4)
+      ToolTip = ("Changes the margin size (Values between 0 and 15 allowed). The default is 4")
+      MaxValue = 15
+      Value = 4
+    }
+    { Panel6 Panel
+      MoveScaled(14,1,5,2)
+    }
+    { QRCLabel4 Label
+      MoveScaled(23,1,9,4)
+      Text = ("Pixel size")
+    }
+    { SpinBoxPixelSize SpinBox SpinBoxes
+      Name = "SpinBoxPixelSize"
+      MoveScaled(34,1,6,4)
+      ToolTip = ("Changes the pixel size, the higher the number the bigger the file and the bigger the image stored (Values between 1 and 15 are allowed) The default is 3")
+      MinValue = 1
+      MaxValue = 15
+      Value = 3
+    }
+  }
+  { Separator2 Separator
+    MoveScaled(0,14,15,0)
+    Background = Color.Black
+  }
+  { Panel3 HBox
+    MoveScaled(0,15,60,4)
+    { QRCLabel1 Label
+      MoveScaled(0,1,24,3)
+      Text = ("Enter your QR barcode text")
+      Alignment = Align.BottomLeft
+    }
+    { Panel8 Panel
+      MoveScaled(24,1,2,3)
+      Expand = True
+    }
+  }
+  { Panel4 HBox
+    MoveScaled(0,21,19,4)
+    Expand = True
+    { TextBoxInput TextArea
+      MoveScaled(0,0,15,4)
+      Background = &HFFFFFF&
+      ToolTip = ("Type the text you want to store in your QR barcode here (max 2000 characters including spaces)")
+      Expand = True
+      Wrap = True
+    }
+  }
+  { PanelQR HBox
+    MoveScaled(2,28,57,11)
+    Expand = True
+    Padding = 2
+    { QRCPictureBox1 PictureBox
+      MoveScaled(2,2,20,8)
+      ToolTip = ("Enter some text above to change the code. You can scan the image with your phone at any time")
+      Expand = True
+      Alignment = Align.Center
+    }
+  }
+}

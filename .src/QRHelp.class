@@ -1,0 +1,18 @@
+' Gambas class file
+
+Public Sub form_Open()
+
+Me.Center
+TextArea1.Line = 0
+
+End
+
+
+Public Sub QRCqrenHelpButton1_Click()
+
+QRHelp.Close
+
+End
+
+
+

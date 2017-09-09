@@ -1,0 +1,39 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,85,46)
+  Icon = Picture["1427210076_qr-code-iphone.png"]
+  Arrangement = Arrange.Vertical
+  Padding = 5
+  { Panel1 HBox
+    MoveScaled(0,1,64,22)
+    Expand = True
+    { TextBoxError TextArea
+      MoveScaled(1,1,63,5)
+      Visible = False
+      Text = ("Opps! It seems that this program can't install qrencode\nand/or zbar-tools for you.\nYou will need to do this yourself - Sorry!\n\nYou should find 'qrencode'  and 'zbar-tools' in your \nSoftware Manger/Center. Once installed try again. ")
+      Wrap = True
+    }
+    { TextBox1 TextArea
+      MoveScaled(1,6,63,16)
+      Expand = True
+      Text = ("This program requires qrencode and zbar-tools \n\nIf you are using a Linux Distribution Based on Dedian(Debian, Ubuntu, Mint etc) click 'Install' to install 'qrencode'\n\nIf you are using another Linux Distribution, close this program and install 'qrencode'  and 'zbar-tools' before trying again")
+      Wrap = True
+    }
+  }
+  { Panel3 HBox
+    MoveScaled(2,24,54,4)
+    { ButtonInstall Button
+      MoveScaled(8,0,14,4)
+      Text = Shortcut(("Install"), "I")
+    }
+    { Panel4 Panel
+      MoveScaled(24,0,15,4)
+      Expand = True
+    }
+    { ButtonCancel Button
+      MoveScaled(39,0,14,4)
+      Text = Shortcut(("Quit"), "Q")
+    }
+  }
+}

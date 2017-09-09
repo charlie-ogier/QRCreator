@@ -1,0 +1,5 @@
+To check is a dependency exists
+dpkg-query -l qrencode
+
+To get Return Value (rv) from above 0 = Installed -- 1 = Not installed
+echo rv:$?

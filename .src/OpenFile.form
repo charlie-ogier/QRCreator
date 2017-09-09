@@ -1,0 +1,33 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,80,64)
+  Arrangement = Arrange.Vertical
+  Padding = 5
+  { Panel1 HBox
+    MoveScaled(3,0,73,53)
+    Expand = True
+    { FileChooser1 FileChooser
+      MoveScaled(2,1,68,48)
+      Expand = True
+    }
+  }
+  { Panel2 HBox
+    MoveScaled(0,56,74,5)
+    Padding = 2
+    { ButtonCancel Button
+      MoveScaled(5,0,11,4)
+      ToolTip = ("Escape from here!")
+      Text = Shortcut(("Cancel"), "C")
+    }
+    { Panel3 Panel
+      MoveScaled(21,2,21,2)
+      Expand = True
+    }
+    { QRCSaveSaveOpen Button
+      MoveScaled(52,0,11,4)
+      ToolTip = ("This will save your QR file")
+      Text = Shortcut(("Open"), "O")
+    }
+  }
+}
