@@ -7,6 +7,8 @@ QRCreator
 gb.image
 gb.qt4
 gb.form
+gb.desktop.x11
+gb.desktop
 gb.media
 gb.media.form
 

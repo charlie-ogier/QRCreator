@@ -17,7 +17,7 @@
     { TextBox1 TextArea
       MoveScaled(1,6,63,16)
       Expand = True
-      Text = ("This program requires qrencode and zbar-tools \n\nIf you are using a Linux Distribution Based on Dedian(Debian, Ubuntu, Mint etc) click 'Install' to install 'qrencode'\n\nIf you are using another Linux Distribution, close this program and install 'qrencode'  and 'zbar-tools' before trying again")
+      Text = ("This program requires qrencode and zbar-tools.\n\nIf you are using a Linux Distribution Based on Debian (Debian, Ubuntu, Mint etc) click 'Install' to install 'qrencode' and 'zbar-tools'. You will need to restart this program.\n\nIf you are using another Linux Distribution, close this program and install 'qrencode' and 'zbar-tools' and try again.")
       Wrap = True
     }
   }

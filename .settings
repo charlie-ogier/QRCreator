@@ -18,18 +18,18 @@ SearchComment=False
 SearchString=True
 
 [OpenFile]
-File[1]=".src/FMain.class:0.119"
+File[1]=".src/FMain.class:34.176"
 File[2]=".src/FMain.form"
-File[3]=".src/SaveForm.form"
-File[4]=".src/qrencode.form"
-File[5]=".src/qrencode.class:18.5"
-Active=1
-File[6]=".src/QRHelp.form"
+File[3]=".src/OpenFile.form"
+File[4]=".src/OpenFile.class:0.24"
+File[5]=".src/qrencode.form"
+Active=4
+File[6]=".src/qrencode.class:0.14"
 Count=10
-File[7]=".src/QRHelp.class:0.6"
-File[8]=".src/OpenFile.form"
-File[9]=".src/OpenFile.class:36.16"
-File[10]=".src/SaveForm.class:110.44"
+File[7]=".src/QRHelp.form"
+File[8]=".src/QRHelp.class:2.11"
+File[9]=".src/SaveForm.form"
+File[10]=".src/SaveForm.class:0.21"
 
 [Watches]
 Count=1

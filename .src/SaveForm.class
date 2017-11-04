@@ -19,7 +19,6 @@ End
 
 Public Sub QRCSaveSaveButton1_Click()
 Dim bTestForFile As Boolean
-' Dim hFile As File
 Dim sQRCSaveTextFileName As String
 
 sQRCSaveFileName = QRCSaveTextBox1.Text
@@ -39,22 +38,20 @@ If Exist(sQRCSaveDIRName &/ sQRCSaveFileName) Then
 Endif
 
 If Not bTestForFile Then
-  ' hfile = Open sQRCSaveDIRName &/ sQRCSaveTextFileName For Create
-  ' Print #hFile, FMain.sQRCOUTPUT
   File.Save(sQRCSaveDIRName &/ sQRCSaveTextFileName, FMain.sQRCOUTPUT)
   sQRCSaveShellCode = "qrencode -o " & sQRCSaveDIRName &/ Shell$(sQRCSaveFileName) & " " & FMain.sQRCPixelSize & FMain.sQRCMargin & Chr(39) & FMain.sQRCOUTPUT & Chr(39)
   Shell sQRCSaveShellcode Wait
   Debug sQRCSaveShellcode 
   sQRCSaveMessage1 = "Your file " & sQRCSaveFileName & " has been saved "
   Print Message.Info(sQRCSaveMessage1, " &OK ")
-  SaveForm.Close()
+  Me.Close()
 Endif
 
 End
 
 Public Sub QRCSaveQuitButton3_Click()
 
-SaveForm.Close()
+Me.Close()
 
 End
 

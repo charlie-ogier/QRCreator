@@ -20,6 +20,6 @@ End
 
 Public Sub ButtonCancel_Click()
 
-Quit
+Me.Close
 
 End

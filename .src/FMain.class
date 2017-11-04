@@ -13,7 +13,7 @@ sQRTemp As String = "qrencode -o ~/.TempQRCodeFile.png 'QRCreator (c)Charlie Ogi
 Public Sub Form_Open()
 Dim bStopCentre As Boolean
 
-Fmain.Title = "QRCreator V2.0.0"
+Fmain.Title = "QRCreator V2.1.0"
 If Not bStopCentre Then Me.Center
 bStopCentre = True
 TestForqrencode
@@ -31,7 +31,7 @@ Dim sNotify As String
 
 sNotify = "notify-send -i ~/.TempQRCodeFile.png QRCreator 'Charlie Ogier software (c) 2017'"
 Shell sNotify
-  
+
 End
 
 Public Sub TestForqrencode()
@@ -52,9 +52,25 @@ End If
 End
 
 Public Sub TextBoxInput_Change() 'What to do when text is entered in the "Barcode" TextBox
+Dim sString As String = TextBoxInput.text & " "
+Dim siPos As Short = InStr(TextBoxInput.text, "http://")
 
 If Not TextBoxInput.text Then Shell sQRTemp Wait
 PictureUpdate
+
+If siPos Then
+  LabelLink.text = Trim(Mid(sString, siPos, InStr(sString, " ", siPos)))
+  VBoxLink.Visible = True
+Else
+  LabelLink.text = ""
+  VBoxLink.Visible = False
+End If  
+
+End
+
+Public Sub LabelLink_MouseUp()
+
+Desktop.Open(LabelLink.Text)
 
 End
 
@@ -121,8 +137,6 @@ If sOutput Not Null Then
   Shell "pkill zbarcam"       'Kill zbarcam
 Endif
 
-
-
 sOutput = Replace(sOutput, "QR-Code:", "")
 TextBoxInput.text = sOutput
 
@@ -130,6 +144,7 @@ End
 
 Public Sub AllButtons_Click(Optional sButton As String)
 Dim iAnswer As Integer
+Dim sErrorCatch As String
 
 If Not sButton Then sButton = Last.name
 
@@ -142,7 +157,7 @@ Select Case sButton
     Endif
     Try Kill "~/.TempQRCodeFile.png"
     Me.Close
-  Case "ToolButtonOpen", "ToolButtonOpen2"
+  Case "ToolButtonOpen", "MenuOpen"
     OpenFile.ShowModal
     TextBoxInput.text = sQRCOUTPUT
   Case "ToolButtonSave", "ToolButtonSave2"
@@ -159,7 +174,12 @@ Select Case sButton
     SpinBoxPixelSize.Value = "3"
     SpinBoxMargin.Value = "4"
     PictureUpdate
-  Case "ToolButtonScan", "ToolButtonScan2"
+  Case "ToolButtonScan", "MenuScan"
+    Shell "zbarcam --version" To sErrorCatch
+    If sErrorCatch = "" Then
+      Message("There is a problem. Ensure the 'zbar-tools' are installed and a suitable camera is available.", "OK")
+      Return
+    Endif
     Shell "zbarcam" For Read As "Process"
   Case "ToolButtonHelp", "ToolButtonHelp2"
     QRHelp.Show
@@ -167,6 +187,4 @@ Select Case sButton
 End Select
 
 End
-
-
 

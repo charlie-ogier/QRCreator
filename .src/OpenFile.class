@@ -22,7 +22,7 @@ End
 
 Public Sub ButtonCancel_Click()
 
-OpenFile.Close
+Me.Close
 
 End
 

@@ -7,10 +7,9 @@ TextArea1.Line = 0
 
 End
 
-
 Public Sub QRCqrenHelpButton1_Click()
 
-QRHelp.Close
+Me.Close
 
 End
 
